@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  database:
+    image: postgres:10
+    environment:
+      - POSTGRES_USER=webmarket
+      - POSTGRES_PASSWORD=webmarket
+    volumes:
+      - ./volumes/database:/var/lib/postgresql/data
+    ports:
+      - 5000:5432
+
