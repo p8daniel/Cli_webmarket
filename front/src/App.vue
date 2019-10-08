@@ -1,4 +1,7 @@
 <template>
+
+
+
     <v-app>
         <v-app-bar
                 app
@@ -78,85 +81,94 @@
 
             <v-spacer></v-spacer>
             <v-btn text rounded>Home</v-btn>
-            <v-btn text rounded>Login</v-btn>
+
+
+            <v-row justify="center">
+                <v-btn
+                    text
+                    rounded
+                  @click.stop="logindialog = true"
+                >
+                  Login
+                </v-btn>
+
+                <v-dialog
+                  v-model="logindialog"
+                  max-width="290"
+                >
+                  <v-card>
+<!--                    <v-card-title class="headline">Use Google's location service?</v-card-title>-->
+
+                                        <!--login Module-->
+                    <v-card width="400" class="ms-auto mt-5">
+                    <v-card-title>
+                        <h1 class="display-1">Login</h1>
+                    </v-card-title>
+                        <v-card-text>
+                            <v-form>
+                                <v-text-field
+                                label="Username"
+                                prepend-icon="mdi-account-circle"/>
+                                <v-text-field
+                                    :type="showPassword ? 'text': 'password'"
+                                    label="Password"
+                                    prepend-icon="mdi-lock"
+                                    :append-icon="showPassword ? 'mdi-eye': 'mdi-eye-off'"
+                                    @click:append="showPassword = !showPassword"
+                                />
+                            </v-form>
+                        </v-card-text>
+                        <v-card-action>
+                            <v-btn color="success">Register</v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn color="info">Login</v-btn>
+                        </v-card-action>
+                    </v-card>
+
+
+
+                    <v-card-actions>
+                      <div class="flex-grow-1"></div>
+
+<!--                      <v-btn-->
+<!--                        color="green darken-1"-->
+<!--                        text-->
+<!--                        @click="logindialog = false"-->
+<!--                      >-->
+<!--                        Disagree-->
+<!--                      </v-btn>-->
+
+<!--                      <v-btn-->
+<!--                        color="green darken-1"-->
+<!--                        text-->
+<!--                        @click="logindialog = false"-->
+<!--                      >-->
+<!--                        Agree-->
+<!--                      </v-btn>-->
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+
+
+
+
+
         </v-app-bar>
 
         <v-content>
+
+
             <v-container>
                 <product-list :search="search"></product-list>
             </v-container>
 
 
-  <v-row justify="center">
-    <v-btn
-      color="primary"
-      dark
-      @click.stop="logindialog = true"
-    >
-      Open Dialog
-    </v-btn>
-
-    <v-dialog
-      v-model="logindialog"
-      max-width="290"
-    >
-      <v-card>
-        <v-card-title class="headline">Use Google's location service?</v-card-title>
-
-        <v-card-text>
-          Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-        </v-card-text>
-
-        <v-card-actions>
-          <div class="flex-grow-1"></div>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="logindialog = false"
-          >
-            Disagree
-          </v-btn>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="logindialog = false"
-          >
-            Agree
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
 
 
 
-            <!--login Module-->
-            <v-card width="400" class="ms-auto mt-5">
-            <v-card-title>
-                <h1 class="display-1">Login</h1>
-            </v-card-title>
-                <v-card-text>
-                    <v-form>
-                        <v-text-field
-                        label="Username"
-                        prepend-icon="mdi-account-circle"/>
-                        <v-text-field
-                            :type="showPassword ? 'text': 'password'"
-                            label="Password"
-                            prepend-icon="mdi-lock"
-                            :append-icon="showPassword ? 'mdi-eye': 'mdi-eye-off'"
-                            @click:append="showPassword = !showPassword"
-                        />
-                    </v-form>
-                </v-card-text>
-                <v-card-action>
-                    <v-btn color="success">Register</v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn color="info">Login</v-btn>
-                </v-card-action>
-            </v-card>
+
+
 
 
 
@@ -240,7 +252,6 @@
             ],
 
             searchAvailable: false,
-            search: null,
             logindialog: false,
 
 
