@@ -19,7 +19,7 @@
 
             <v-app-bar-nav-icon></v-app-bar-nav-icon> <!-- Add the menu symbol on the left -->
 
-            <v-toolbar-title style="width: 30%">
+            <v-toolbar-title style="width: 40%">
                 <v-row no-gutters>
                     <v-col cols="1" align-self="center">
                         <v-img
@@ -44,7 +44,7 @@
                         v-if="searchAvailable"
                         class="mr-2"
                         label="Search ..."
-                        prepend-inner-icon="search"
+
                         v-model="search"
                         clearable
                         single-line

@@ -5,7 +5,6 @@ import re
 from webmarket.models.product import Product, ProductCategory, Category
 
 
-
 def get_product_by_name(name):
     product = Product.get(name=name)
     return product
@@ -80,7 +79,7 @@ def delete_product(product_name):
     return True
 
 
-def search_products(query, type):
+def search_products(query):
     query = query.lower()
     products = Product.select().where(Product.name.contains(query))
     return products
