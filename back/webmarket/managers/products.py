@@ -10,7 +10,7 @@ def get_product_by_name(name):
     return product
 
 
-def loadfiledata(name="/home/daniel/Dropbox/PyCharmLinux/Cli_webmaket/back/webmarket/dati.csv"):
+def loadfiledata(name="./webmarket/dati.csv"):
     with open(name, 'r') as f:
         reader=csv.DictReader(f)
         #dict=[]
@@ -80,9 +80,13 @@ def delete_product(product_name):
 
 
 def search_products(query):
-    query = query.lower()
-    products = Product.select().where(Product.name.contains(query))
-    return products
+    if not query:
+        print("Not query...")
+        #products = Product.select()
+    else:
+        query = query.lower()
+        products = Product.select().where(Product.name.contains(query))
+        return products
 
 #types = [a.type.name for a in product.types]
 

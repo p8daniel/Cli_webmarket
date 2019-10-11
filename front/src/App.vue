@@ -160,15 +160,6 @@
             </v-container>
 
 
-
-
-
-
-
-
-
-
-
 <!--            <v-layout class="my-3 mx-5">
                 <v-flex xs10>
                     <v-text-field
@@ -262,6 +253,7 @@
                 let params = {query: this.search};
                 axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
                     this.products = response.data;
+                    console.log(this.products)
                 });
             }
         }
