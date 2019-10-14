@@ -5,13 +5,12 @@ import re
 from webmarket.models.product import Product, ProductCategory, Category
 
 
-
 def get_product_by_name(name):
     product = Product.get(name=name)
     return product
 
 
-def loadfiledata(name="/home/daniel/Dropbox/PyCharmLinux/Cli_webmaket/back/webmarket/dati.csv"):
+def loadfiledata(name="./webmarket/dati.csv"):
     with open(name, 'r') as f:
         reader=csv.DictReader(f)
         #dict=[]
@@ -80,9 +79,14 @@ def delete_product(product_name):
     return True
 
 
-def search_products(query, type):
-    query = query.lower()
-    products = Product.select().where(Product.name.contains(query))
+def search_products(query):
+    if not query:
+        print("Not query...")
+        products = Product.select()
+    else:
+        query = query.lower()
+        products = Product.select().where(Product.name.contains(query))
+
     return products
 
 #types = [a.type.name for a in product.types]

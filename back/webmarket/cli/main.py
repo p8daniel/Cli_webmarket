@@ -43,6 +43,8 @@ def get_name(name):
 
 @get.command('products')
 
+
+
 @click.option('--category')
 @click.option('--price')
 

@@ -1,7 +1,5 @@
 <template>
 
-
-
     <v-app>
         <v-app-bar
                 app
@@ -21,7 +19,7 @@
 
             <v-app-bar-nav-icon></v-app-bar-nav-icon> <!-- Add the menu symbol on the left -->
 
-            <v-toolbar-title style="width: 30%">
+            <v-toolbar-title style="width: 40%">
                 <v-row no-gutters>
                     <v-col cols="1" align-self="center">
                         <v-img
@@ -46,7 +44,7 @@
                         v-if="searchAvailable"
                         class="mr-2"
                         label="Search ..."
-                        prepend-inner-icon="search"
+
                         v-model="search"
                         clearable
                         single-line
@@ -83,20 +81,20 @@
             <v-btn text rounded>Home</v-btn>
 
 
-            <v-row justify="center">
-                <v-btn
+<!--            <v-row justify="center">-->
+            <v-btn
                     text
                     rounded
                   @click.stop="logindialog = true"
                 >
                   Login
-                </v-btn>
+            </v-btn>
 
                 <v-dialog
                   v-model="logindialog"
                   max-width="290"
                 >
-                  <v-card>
+<!--                  <v-card>-->
 <!--                    <v-card-title class="headline">Use Google's location service?</v-card-title>-->
 
                                         <!--login Module-->
@@ -123,12 +121,10 @@
                             <v-spacer></v-spacer>
                             <v-btn color="info">Login</v-btn>
                         </v-card-action>
+
                     </v-card>
-
-
-
-                    <v-card-actions>
-                      <div class="flex-grow-1"></div>
+<!--                    <v-card-actions>-->
+<!--                      <div class="flex-grow-1"></div>-->
 
 <!--                      <v-btn-->
 <!--                        color="green darken-1"-->
@@ -145,10 +141,10 @@
 <!--                      >-->
 <!--                        Agree-->
 <!--                      </v-btn>-->
-                    </v-card-actions>
-                  </v-card>
+<!--                    </v-card-actions>-->
+<!--                  </v-card>-->
                 </v-dialog>
-              </v-row>
+<!--              </v-row>-->
 
 
 
@@ -162,15 +158,6 @@
             <v-container>
                 <product-list :search="search"></product-list>
             </v-container>
-
-
-
-
-
-
-
-
-
 
 
 <!--            <v-layout class="my-3 mx-5">
@@ -189,10 +176,10 @@
             </v-layout> -->
 
 
-            <Product name="Formula_1"/>
-<!--            <Product name="Niteworks"/>-->
-            <Product :name="product.name" v-for="product in products" :key="product.name"/>
-            <router-view></router-view>
+<!--            <Product name="Formula_1"/>-->
+<!--&lt;!&ndash;            <Product name="Niteworks"/>&ndash;&gt;-->
+<!--            <Product :name="product.name" v-for="product in products" :key="product.name"/>-->
+<!--            <router-view></router-view>-->
         </v-content>
 
 
@@ -233,13 +220,14 @@
 
 <script>
     import axios from 'axios';
-    import Product from './components/Product';
+    // import Product from './components/Product';
+    import ProductList from './components/ProductList';
 
     export default {
         name: 'App',
         components: {
-            Product,
-            // ProductList
+            //Product,
+            ProductList
 
         },
         data: () => ({//
@@ -265,6 +253,7 @@
                 let params = {query: this.search};
                 axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
                     this.products = response.data;
+                    console.log(this.products)
                 });
             }
         }

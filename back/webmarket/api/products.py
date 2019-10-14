@@ -7,8 +7,10 @@ from webmarket.managers.products import search_products, get_product_by_name, ad
 class Products(Resource):
     def get(self):
         query = request.args['query']
-        products_matching = search_products(query, type=None)
+        print(query)
+        products_matching = search_products(query)
         products = [product.get_small_data() for product in products_matching]
+        print(products)
         return products
     def post(self):
         data = request.json
