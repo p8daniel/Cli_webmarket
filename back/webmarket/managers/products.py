@@ -18,7 +18,7 @@ def loadfiledata(name="./webmarket/dati.csv"):
             #print(row)
 
             name = row['name']
-            name = re.sub(' ', '_', name)
+            #name = re.sub(' ', '_', name)
             price = row['price']
             category = row['category']
             category = re.sub(' ', '_', category)

@@ -11,6 +11,9 @@ class Product(Model):
     price = FloatField()
     #stock=IntegerField()
     sprite=CharField(null=True)
+    taste=CharField(null=True)
+    internal_id=IntegerField()
+    detail=CharField()
 
     class Meta:
         database = db
