@@ -82,11 +82,12 @@ def delete_product(product_name):
 def search_products(query):
     if not query:
         print("Not query...")
-        #products = Product.select()
+        products = Product.select()
     else:
         query = query.lower()
         products = Product.select().where(Product.name.contains(query))
-        return products
+
+    return products
 
 #types = [a.type.name for a in product.types]
 

@@ -21,10 +21,10 @@
             <v-card-actions>
                 <v-chip v-for="type in product.types" class="mx-1" :key="type">{{ type }}</v-chip>
                 <v-spacer></v-spacer>
-                <v-btn text icon color="blue" @click="startEditProduct">
+                <v-btn text icon color="blue" @click="">
                     <v-icon>edit</v-icon>
                 </v-btn>
-                <v-btn text icon color="red" @click="deleteProduct">
+                <v-btn text icon color="red" @click="">
                     <v-icon>delete</v-icon>
                 </v-btn>
             </v-card-actions>
@@ -116,7 +116,7 @@
 
     export default {
         //props: ['name'],
-        propos: ['product'],
+        props: ['product'],
         data: () => ({
             //product: null
             edit: false,
