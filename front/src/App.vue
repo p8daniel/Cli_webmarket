@@ -72,7 +72,30 @@
                         background-color="transparent"
                 >
                     <v-tab>Products</v-tab>
-                    <v-tab>Category</v-tab>
+
+                    <v-menu >
+                          <template v-slot:activator="{ on }">
+                            <v-btn
+                                   text
+                              v-on="on"
+                                   @click="getCategories"
+                            >
+                              Category
+                            </v-btn>
+                          </template>
+
+                          <v-list>
+                            <v-list-item
+
+                              v-for="(category, index) in categories"
+                              :key="index"
+                              @click=""
+                            >
+                              <v-list-item-title>{{ category }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
+
                     <v-tab>Users</v-tab>
                 </v-tabs>
             </template>
@@ -233,6 +256,7 @@
         data: () => ({//
             search: null,
             products: [],
+            categories: null,
             showPassword: false, //for the login
             links: [
                 'Home',
@@ -254,6 +278,11 @@
                 axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
                     this.products = response.data;
                     console.log(this.products)
+                });
+            },
+            getCategories() {
+                axios.get('http://localhost:8000/api/v1/categories').then((response) => {
+                    this.categories = response.data;
                 });
             }
         }

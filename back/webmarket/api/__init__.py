@@ -3,7 +3,7 @@ from flask_restful import Api
 
 from webmarket.models.database import db
 
-from webmarket.api.products import Product, Products
+from webmarket.api.products import Product, Products, Categories
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -20,5 +20,7 @@ def register_api(app):
 
     api.add_resource(Products, '/products')
     api.add_resource(Product, '/product/<product_name>')
+    api.add_resource(Categories, '/categories')
+
 
     app.register_blueprint(api_bp, url_prefix="/api/v1")

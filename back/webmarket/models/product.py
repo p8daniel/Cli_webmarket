@@ -28,7 +28,9 @@ class Product(Model):
         return names
 
     def get_small_data(self):
-        return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite}
+        return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
+                'price': self.price, 'taste': self.taste, 'detail': self.detail, 'stock': self.stock,
+                'label': self.label}
 
 
 
