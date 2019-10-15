@@ -4,7 +4,7 @@
             <v-list-item three-line>
                 <v-list-item-content>
                     <v-list-item-title class="display-1 text--primary mb-1">{{ product.name }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ product.stats }}</v-list-item-subtitle>
+                    <v-list-item-subtitle>{{ product.detail}}</v-list-item-subtitle>
                 </v-list-item-content>
 
                 <v-list-item-avatar
@@ -39,13 +39,13 @@
                     <v-card-text>
                         <v-container>
                             <v-row>
-                                <v-col cols="12" sm="6" md="4" v-for="stat in Object.keys(product_edited.stats)" :key="stat">
-                                    <v-text-field
-                                            :label="stat"
-                                            v-model="product_edited.stats[stat]"
-                                            outlined
-                                    ></v-text-field>
-                                </v-col>
+<!--                                <v-col cols="12" sm="6" md="4" v-for="stat in Object.keys(product_edited.stats)" :key="stat">-->
+<!--                                    <v-text-field-->
+<!--                                            :label="stat"-->
+<!--                                            v-model="product_edited.stats[stat]"-->
+<!--                                            outlined-->
+<!--                                    ></v-text-field>-->
+<!--                                </v-col>-->
                                 <v-col cols="12">
                                     <v-select
                                             v-model="product_edited.categories"
@@ -79,21 +79,21 @@
         props: ['product'],
         data: () => ({
             edit: false,
-            pokemon_edited: null,
+            product_edited: null,
             categories: null
         }),
         methods: {
             startEditProduct() {
                 this.categories = [];
-                this.pokemon_edited = {
-                    stats: {},
+                this.product_edited = {
+                    // stats: {},
                     categories: []
                 };
-                Object.keys(this.product.stats).forEach((stat) => {
-                    this.pokemon_edited.stats[stat] = this.product.stats[stat];
-                });
+                // Object.keys(this.product.stats).forEach((stat) => {
+                //     this.product_edited.stats[stat] = this.product.stats[stat];
+                // });
                 this.product.categories.forEach((category) => {
-                    this.pokemon_edited.categories.push(category);
+                    this.product_edited.categories.push(category);
                     this.categories.push(category);
                 });
 
@@ -104,7 +104,7 @@
                 this.edit = true;
             },
             editProduct() {
-                axios.patch('http://localhost:8000/api/v1/product/' + this.product.name, this.pokemon_edited).then(() => {
+                axios.patch('http://localhost:8000/api/v1/product/' + this.product.name, this.product_edited).then(() => {
                     this.$emit('update');
                     // console.log(JSON.stringify(response.data));
                 });

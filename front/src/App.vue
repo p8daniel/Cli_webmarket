@@ -71,17 +71,20 @@
                         align-with-title
                         background-color="transparent"
                 >
-                    <v-tab>Products</v-tab>
 
                     <v-menu >
                           <template v-slot:activator="{ on }">
+
+
+                              <v-btn text>Users</v-btn>
                             <v-btn
                                    text
                               v-on="on"
                                    @click="getCategories"
                             >
-                              Category
+                              Categories
                             </v-btn>
+                              <v-btn text>Products</v-btn>
                           </template>
 
                           <v-list>
@@ -96,7 +99,6 @@
                           </v-list>
                         </v-menu>
 
-                    <v-tab>Users</v-tab>
                 </v-tabs>
             </template>
 
@@ -255,7 +257,6 @@
         },
         data: () => ({//
             search: null,
-            products: [],
             categories: null,
             showPassword: false, //for the login
             links: [
@@ -273,13 +274,13 @@
         },
 
         methods:{
-            searchProducts()  {
-                let params = {query: this.search};
-                axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-                    this.products = response.data;
-                    console.log(this.products)
-                });
-            },
+            // searchProducts()  {
+            //     let params = {query: this.search};
+            //     axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+            //         this.products = response.data;
+            //         console.log(this.products)
+            //     });
+            // },
             getCategories() {
                 axios.get('http://localhost:8000/api/v1/categories').then((response) => {
                     this.categories = response.data;
