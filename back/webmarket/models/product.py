@@ -6,14 +6,16 @@ from .database import db
 class Product(Model):
     id = PrimaryKeyField()
     name = CharField()
-    instruction = CharField()
+    instruction = CharField(null=True)
     #description = CharField()
     price = FloatField()
     #stock=IntegerField()
     sprite=CharField(null=True)
     taste=CharField(null=True)
     internal_id=IntegerField()
-    detail=CharField()
+    detail=CharField(null=True)
+    stock=IntegerField()
+    label=CharField(null=True)
 
     class Meta:
         database = db

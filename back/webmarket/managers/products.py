@@ -10,7 +10,7 @@ def get_product_by_name(name):
     return product
 
 
-def loadfiledata(name="./webmarket/dati.csv"):
+def loadfiledata(name="./webmarket/dati_review141019.csv"):
     with open(name, 'r') as f:
         reader=csv.DictReader(f)
         #dict=[]
@@ -21,11 +21,18 @@ def loadfiledata(name="./webmarket/dati.csv"):
             #name = re.sub(' ', '_', name)
             price = row['price']
             category = row['category']
-            category = re.sub(' ', '_', category)
+
+            sub_name=row['sub_name']
+            taste=row['taste']
+            sprite=row['sprite']
+            internal_id=row['internal_id']
+            stock=row['stock']
+            label=row['label']
+            #category = re.sub(' ', '_', category)
 
             #dict={'name':row['name'], 'price': row['price'], 'category':row['category'] }
-            #print(name, price, category)
-            add_new_product(name,price,category,"null")
+            print(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
+            add_new_product(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
 
 def get_products_by_price(min_price):
     results = []
@@ -47,7 +54,7 @@ def get_products_by_category(category):
      return results
 
 
-def add_new_product(name, price, category, instruction): #instruction is optional
+def add_new_product(name,price,category,sub_name,taste,sprite,internal_id,stock,label, instruction="No instructions"): #instruction is optional
     """ create a new product in the database"""
 
 
@@ -55,7 +62,7 @@ def add_new_product(name, price, category, instruction): #instruction is optiona
 
 
     if product is None:
-        product = Product.create(name=name, price=price, instruction=instruction)
+        product = Product.create(name=name, price=price, instruction=instruction, detail=sub_name, taste=taste, sprite=sprite, internal_id=internal_id, stock=stock, label=label)
 
     else: #the product already exit -> we update it
 
