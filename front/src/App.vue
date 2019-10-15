@@ -75,8 +75,6 @@
                     <v-menu >
                           <template v-slot:activator="{ on }">
 
-
-                              <v-btn text>Users</v-btn>
                             <v-btn
                                    text
                               v-on="on"
@@ -84,10 +82,10 @@
                             >
                               Categories
                             </v-btn>
-                              <v-btn text>Products</v-btn>
+
                           </template>
 
-                          <v-list>
+                        <v-list>
                             <v-list-item
 
                               v-for="(category, index) in categories"
@@ -95,6 +93,34 @@
                               @click=""
                             >
                               <v-list-item-title>{{ category }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
+
+
+                        <v-menu>
+
+                        <template v-slot:activator="{ on }">
+                        <v-btn text
+
+                              v-on="on"
+                                   @click="getProducts"
+                        >
+<!--                            <v-icon left>expand_more</v-icon>-->
+                              Products
+
+                              </v-btn>
+                        </template>
+
+
+                          <v-list>
+                            <v-list-item
+
+                              v-for="(product, index) in products"
+                              :key="index"
+                              @click=""
+                            >
+                              <v-list-item-title>{{ product.name }}</v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
@@ -185,22 +211,6 @@
             </v-container>
 
 
-<!--            <v-layout class="my-3 mx-5">
-                <v-flex xs10>
-                    <v-text-field
-                            solo
-                            label="Search ..."
-                            prepend-inner-icon="mdi-magnify"
-                            v-model="search">
-                        >
-                    </v-text-field>
-                </v-flex>
-                <v-flex xs2 class="ml-2 mt-1">
-                    <v-btn block large @click="searchProducts" color="pink">Search</v-btn>
-                </v-flex>
-            </v-layout> -->
-
-
 <!--            <Product name="Formula_1"/>-->
 <!--&lt;!&ndash;            <Product name="Niteworks"/>&ndash;&gt;-->
 <!--            <Product :name="product.name" v-for="product in products" :key="product.name"/>-->
@@ -258,6 +268,7 @@
         data: () => ({//
             search: null,
             categories: null,
+            products: null,
             showPassword: false, //for the login
             links: [
                 'Home',
@@ -285,6 +296,14 @@
                 axios.get('http://localhost:8000/api/v1/categories').then((response) => {
                     this.categories = response.data;
                 });
+            },
+
+            getProducts() {
+                let params = {query: ""};
+                axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+                    this.products = response.data;
+                });
+
             }
         }
 
