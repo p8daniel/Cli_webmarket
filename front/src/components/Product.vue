@@ -70,44 +70,44 @@
     </div>
 </template>
 
-<!--<template>-->
-<!--    <v-container>-->
-<!--        <v-layout v-if="product !== null">-->
-<!--            <v-flex xs12>-->
-<!--                <v-card class="mx-auto">-->
-<!--                    <v-list-item three-line>-->
-<!--                            <v-list-item-content>-->
+<template>
+    <v-container>
+        <v-layout v-if="product !== null">
+            <v-flex xs12>
+                <v-card class="mx-auto">
+                    <v-list-item three-line>
+                            <v-list-item-content>
 
-<!--                                <v-card-title>{{ product.name }}</v-card-title>-->
-<!--                                <v-card-text>{{ product.categories }}</v-card-text>-->
-<!--                            </v-list-item-content>-->
-<!--                            <v-list-item-avatar-->
-<!--                                tile-->
-<!--                                size="100"-->
-<!--                        >-->
-<!--                            <v-img-->
-<!--                                    :src="product.sprite"-->
-<!--                                    aspect-ratio="1"-->
-<!--                            ></v-img>-->
-<!--                            </v-list-item-avatar>-->
-<!--                        </v-list-item>-->
+                                <v-card-title>{{ product.name }}</v-card-title>
+                                <v-card-text>{{ product.categories }}</v-card-text>
+                            </v-list-item-content>
+                            <v-list-item-avatar
+                                tile
+                                size="100"
+                        >
+                            <v-img
+                                    :src="product.sprite"
+                                    aspect-ratio="1"
+                            ></v-img>
+                            </v-list-item-avatar>
+                        </v-list-item>
 
-<!--                        <v-card-actions>-->
+                        <v-card-actions>
 
-<!--                            <v-chip v-for="type in product.categories" class="mx-1">{{ type }}</v-chip>-->
-<!--                            <v-spacer></v-spacer>-->
+                            <v-chip v-for="type in product.categories" class="mx-1">{{ type }}</v-chip>
+                            <v-spacer></v-spacer>
 
-<!--                            <v-btn text icon color="red" @click="deleteProduct">-->
-<!--                                <v-icon>mdi-delete</v-icon>-->
-<!--                            </v-btn>-->
+                            <v-btn text icon color="red" @click="deleteProduct">
+                                <v-icon>mdi-delete</v-icon>
+                            </v-btn>
 
-<!--                        </v-card-actions>-->
+                        </v-card-actions>
 
-<!--                    </v-card>-->
-<!--            </v-flex>-->
-<!--        </v-layout>-->
-<!--    </v-container>-->
-<!--</template>-->
+                    </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
+</template>
 
 
 
