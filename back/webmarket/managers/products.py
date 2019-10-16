@@ -2,7 +2,7 @@ import requests
 import csv
 import re
 
-from webmarket.models.product import Product, ProductCategory, Category
+from webmarket.models.product import Product, ProductCategory, Category, Taste
 
 
 def get_product_by_name(name):
@@ -62,12 +62,18 @@ def add_new_product(name,price,category,sub_name,taste,sprite,internal_id,stock,
 
 
     if product is None:
-        product = Product.create(name=name, price=price, instruction=instruction, detail=sub_name, taste=taste, sprite=sprite, internal_id=internal_id, stock=stock, label=label)
+        product = Product.create(name=name, price=price, instruction=instruction, detail=sub_name, sprite=sprite)
+        Taste.create(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
 
     else: #the product already exit -> we update it
 
+        tastelem=Taste.get_or_none(internal_id=internal_id)
+        if tastelem is None:
+            Taste.create(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
+        else:
+            Taste.update(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
         ProductCategory.delete().where(ProductCategory.product == product).execute() # find the productcategory element associated with the product
-        product.update(name=name, price=price, instruction=instruction)
+        product.update(name=name, price=price, instruction=instruction, detail=sub_name, sprite=sprite)
 
 
     # correspond to the two options (if and else)
@@ -77,7 +83,7 @@ def add_new_product(name,price,category,sub_name,taste,sprite,internal_id,stock,
     ProductCategory.create(product=product, category=query)  # like join two table in another table
     print(product.name)
     return product
-    print(product.name)
+
 
 
 def delete_product(product_name):

@@ -1,11 +1,9 @@
 <template>
     <v-app>
 
-        <Navbar />
+        <Appbar />
 
         <v-content>
-
-
             <v-container>
                 <product-list :search="search"></product-list>
             </v-container>
@@ -58,58 +56,58 @@
     import axios from 'axios';
     // import Product from './components/Product';
     import ProductList from './components/ProductList';
-    import Navbar from "./components/Navbar";
+    import Appbar from "./components/Appbar";
 
     export default {
         name: 'App',
         components: {
-            //Product,
-            ProductList,
-            Navbar
+                //Product,
+                ProductList,
+                Appbar
 
-        },
-        data: () => ({//
-            search: null,
-            categories: null,
-            products: null,
-            showPassword: false, //for the login
-            links: [
-                'Home',
-                'Login'
-            ],
+            },
+            data: () => ({//
+                search: null,
+                categories: null,
+                products: null,
+                showPassword: false, //for the login
+                links: [
+                    'Home',
+                    'Login'
+                ],
 
-            searchAvailable: false,
-            logindialog: false,
+                searchAvailable: false,
+                logindialog: false,
 
 
-        }),
-        created() {
+            }),
+            created() {
 
-        },
-
-        methods:{
-            // searchProducts()  {
-            //     let params = {query: this.search};
-            //     axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-            //         this.products = response.data;
-            //         console.log(this.products)
-            //     });
-            // },
-            getCategories() {
-                axios.get('http://localhost:8000/api/v1/categories').then((response) => {
-                    this.categories = response.data;
-                });
             },
 
-            getProducts() {
-                let params = {query: ""};
-                axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-                    this.products = response.data;
-                });
+        // methods:{
+        //     // searchProducts()  {
+        //     //     let params = {query: this.search};
+        //     //     axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+        //     //         this.products = response.data;
+        //     //         console.log(this.products)
+        //     //     });
+        //     // },
+        //     getCategories() {
+        //         axios.get('http://localhost:8000/api/v1/categories').then((response) => {
+        //             this.categories = response.data;
+        //         });
+        //     },
+        //
+        //     getProducts() {
+        //         let params = {query: ""};
+        //         axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+        //             this.products = response.data;
+        //         });
+        //
+        //     }
+        // }
 
-            }
-        }
 
-
-    };
+        };
 </script>

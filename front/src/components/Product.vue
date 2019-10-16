@@ -29,9 +29,9 @@
                 </v-btn>
 
 
-                <a
-                :href="product.label"><v-icon text icon color="green" >note</v-icon>
-                </a>
+<!--                <a-->
+<!--                :href="product.label"><v-icon text icon color="green" >note</v-icon>-->
+<!--                </a>-->
 
 
             </v-card-actions>
