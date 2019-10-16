@@ -27,6 +27,13 @@
                 <v-btn text icon color="red" @click="deleteProduct">
                     <v-icon>delete</v-icon>
                 </v-btn>
+
+
+                <a
+                :href="product.label"><v-icon text icon color="green" >note</v-icon>
+                </a>
+
+
             </v-card-actions>
         </v-card>
 
@@ -82,6 +89,7 @@
             product_edited: null,
             categories: null
         }),
+
         methods: {
             startEditProduct() {
                 this.categories = [];
@@ -115,7 +123,7 @@
                 axios.delete('http://localhost:8000/api/v1/product/' + this.product.name).then(() => {
                     this.$emit('delete');
                 });
-            }
+            },
         }
     };
 </script>
