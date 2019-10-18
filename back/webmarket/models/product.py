@@ -27,8 +27,10 @@ class Product(Model):
 
     def get_small_data(self):
         return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
-                'price': self.price, 'taste': self.taste, 'detail': self.detail, 'stock': self.stock,
-                'label': self.label}
+                 'detail': self.detail}
+
+# 'price': self.price, 'taste': self.taste, 'stock': self.stock, 'label': self.label
+
 
 with db:
     Product.create_table(fail_silently=True)

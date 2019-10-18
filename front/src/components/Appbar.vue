@@ -45,7 +45,7 @@
                         class="mr-2"
                         label="Search ..."
 
-                        v-model="search"
+                        v-model="search_bar"
                         clearable
                         single-line
                         light
@@ -55,7 +55,7 @@
             </v-slide-x-transition>
 
             <v-btn icon>
-                <v-icon @click="searchAvailable = !searchAvailable">mdi-magnify</v-icon>
+                <v-icon @click="searchProducts">mdi-magnify</v-icon>
             </v-btn>
 
             <v-btn icon>
@@ -197,6 +197,7 @@
     data: () => ({//
 
         categories: null,
+        search_bar: "",
         products: null,
         showPassword: false, //for the login
         links: [
@@ -204,8 +205,10 @@
             'Login'
         ],
 
+
         searchAvailable: false,
         logindialog: false,
+
 
 
     }),
@@ -229,7 +232,16 @@
                 this.products = response.data;
             });
 
+        },
+        searchProducts() {
+
+         this.searchAvailable =! this.searchAvailable,
+
+        this.$emit("search",this.search_bar)
+        // debugger;
         }
+
+
     }
     };
 
