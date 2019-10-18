@@ -1,6 +1,22 @@
 <template>
 
     <v-app>
+
+        <v-navigation-drawer v-model="drawer" app temporary>
+        <v-list>
+
+                <v-list-item>
+        <v-list-item-content>
+        <v-list-item-title>Menu</v-list-item-title>
+      </v-list-item-content>
+            </v-list-item>
+
+            <v-divider></v-divider>
+
+        </v-list>
+        </v-navigation-drawer>
+
+
     <v-app-bar
                 app
                 color="#4CAF50"
@@ -17,7 +33,7 @@
                 ></v-img>
             </template>-->
 
-            <v-app-bar-nav-icon></v-app-bar-nav-icon> <!-- Add the menu symbol on the left -->
+            <v-app-bar-nav-icon @click="drawer =! drawer"></v-app-bar-nav-icon> <!-- Add the menu symbol on the left -->
 
             <v-toolbar-title style="width: 40%">
                 <v-row no-gutters>
@@ -208,10 +224,16 @@
             'Home',
             'Login'
         ],
+        drawer: false,
 
 
         searchAvailable: false,
         logindialog: false,
+        items: [{
+            icon:'perm_identity',
+            href: '#',
+            title: 'Account'
+        }]
 
 
 

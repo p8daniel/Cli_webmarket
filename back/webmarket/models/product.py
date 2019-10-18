@@ -25,9 +25,15 @@ class Product(Model):
             names.append(product_category.category.name)
         return names
 
+    def get_taste_name(self):
+        names = []
+        for product_taste in self.tastes:
+            names.append(product_taste.name)
+        return names
+
     def get_small_data(self):
         return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
-                 'detail': self.detail}
+                 'detail': self.detail, 'tastes':self.get_taste_name()}
 
 # 'price': self.price, 'taste': self.taste, 'stock': self.stock, 'label': self.label
 

@@ -1,8 +1,7 @@
 <template>
     <v-app>
 
-        <Appbar @search="searchProducts">
-        </Appbar>
+        <Appbar @search="searchProducts"> </Appbar>
 
         <v-content>
             <v-container>
@@ -18,7 +17,7 @@
 
 
 
-    <BottomBar/>
+        <BottomBar/>
 
 
     </v-app>
@@ -67,13 +66,13 @@
             },
 
 
-        methods:{
-            searchProducts()  {
-                let params = {query: this.search};
-                axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-                    this.products = response.data;
-                    console.log(this.products)
-                });
+             methods:{
+                searchProducts()  {
+                    let params = {query: this.search};
+                    axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+                        this.products = response.data;
+                        // console.log(this.products)
+                    });
             },
         //     getCategories() {
         //         axios.get('http://localhost:8000/api/v1/categories').then((response) => {

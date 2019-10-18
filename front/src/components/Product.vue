@@ -18,6 +18,14 @@
                 </v-list-item-avatar>
             </v-list-item>
 
+            <v-col class="d-flex" cols="12" sm="6">
+                    <v-select
+                      :items="product.tastes"
+                      label="Select taste"
+                      solo
+                    ></v-select>
+                  </v-col>
+
             <v-card-actions>
                 <v-chip v-for="category in product.categories" class="mx-1" :key="category">{{ category }}</v-chip>
                 <v-spacer></v-spacer>
@@ -87,7 +95,12 @@
         data: () => ({
             edit: false,
             product_edited: null,
-            categories: null
+            categories: null,
+            items:[
+                'a',
+                'b',
+                'c',
+            ]
         }),
 
         methods: {
