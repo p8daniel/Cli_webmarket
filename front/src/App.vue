@@ -18,33 +18,7 @@
 
 
 
-    <!-- footbar -->
-        <v-footer
-    color="primary lighten-1"
-    padless
-  >
-    <v-row
-      justify="center"
-      no-gutters
-    >
-      <v-btn
-        v-for="link in links"
-        :key="link"
-        color="white"
-        text
-        rounded
-        class="my-2"
-      >
-        {{ link }}
-      </v-btn>
-      <v-col
-        class="primary lighten-2 py-4 text-center white--text"
-        cols="12"
-      >
-        {{ new Date().getFullYear() }} — <strong>Vuetify test</strong>
-      </v-col>
-    </v-row>
-    </v-footer>
+    <BottomBar/>
 
 
     </v-app>
@@ -58,6 +32,7 @@
     // import Product from './components/Product';
     import ProductList from './components/ProductList';
     import Appbar from "./components/Appbar";
+    import BottomBar from "./components/BottomBar";
 
 
 
@@ -67,7 +42,8 @@
         components: {
                 //Product,
                 ProductList,
-                Appbar
+                Appbar,
+                BottomBar
 
             },
             data: () => ({//

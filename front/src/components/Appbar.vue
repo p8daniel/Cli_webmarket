@@ -3,7 +3,7 @@
     <v-app>
     <v-app-bar
                 app
-                color="#ff928f"
+                color="#4CAF50"
                 dark
                 shrink-on-scroll
                 prominent
@@ -64,6 +64,10 @@
 
             <v-btn icon> <!-- add the three dot botton -->
                 <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+                <v-icon>shopping_cart</v-icon>
             </v-btn>
 
             <template v-slot:extension> <!-- make the top image larger and add menues -->
