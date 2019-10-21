@@ -68,6 +68,7 @@
                         solo
                 >
                 </v-text-field>
+
             </v-slide-x-transition>
 
             <v-btn icon>
@@ -77,13 +78,19 @@
             <v-btn icon>
                 <v-icon>mdi-heart</v-icon>
             </v-btn>
+                    <v-spacer></v-spacer>
 
-            <v-btn icon> <!-- add the three dot botton -->
-                <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
+<!--            <v-btn icon> &lt;!&ndash; add the three dot botton &ndash;&gt;-->
+<!--                <v-icon>mdi-dots-vertical</v-icon>-->
+<!--            </v-btn>-->
 
             <v-btn icon>
+                <v-badge left color="green">
+                    <span slot="badge"></span>
                 <v-icon>shopping_cart</v-icon>
+                    <a href="/basket">Basket</a>
+            </v-badge>
+
             </v-btn>
 
             <template v-slot:extension> <!-- make the top image larger and add menues -->
@@ -149,7 +156,7 @@
             </template>
 
             <v-spacer></v-spacer>
-            <v-btn text rounded>Home</v-btn>
+        <v-btn text rounded><a href="/">Home</a></v-btn>
 
 
 <!--            <v-row justify="center">-->
@@ -262,8 +269,7 @@
         searchProducts() {
 
          this.searchAvailable =! this.searchAvailable,
-
-        this.$emit("search",this.search_bar)
+             this.$emit("search",this.search_bar)
         // debugger;
         }
 

@@ -92,13 +92,23 @@ def delete_product(product_name):
     return True
 
 
-def search_products(query):
+def search_products(query, query2):
     if not query:
-        print("Not query...")
-        products = Product.select()
+        if not query2:
+            print("Not query...")
+            products = Product.select()
+        else:
+            query2 = query2.lower()
+            products = Product.select().where(Product.category.contains(query2))
+
     else:
-        query = query.lower()
-        products = Product.select().where(Product.name.contains(query))
+        if not query2:
+            query = query.lower()
+            products = Product.select().where(Product.name.contains(query))
+        else:
+            query = query.lower()
+            query2 = query2.lower()
+            products = Product.select().where(Product.name.contains(query), Product.categoy.contains(query2))
 
     return products
 

@@ -6,9 +6,9 @@ from webmarket.managers.categories import get_list_categories
 
 class Products(Resource):
     def get(self):
-        query = request.args['query']
+        query = request.args['query','query2']
         #print(query)
-        products_matching = search_products(query)
+        products_matching = search_products(query,query2)
         products = [product.get_small_data() for product in products_matching]
         #print(products)
         return products

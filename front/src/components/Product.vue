@@ -20,11 +20,17 @@
 
             <v-col class="d-flex" cols="12" sm="6">
                     <v-select
-                      :items="product.tastes"
+
+                      :items= (v-for="taste.name in product.tastes")
                       label="Select taste"
                       solo
                     ></v-select>
-                  </v-col>
+
+            </v-col>
+            <v-col class="text-right">
+                price: {{product.price}} &#8364;
+            </v-col>
+
 
             <v-card-actions>
                 <v-chip v-for="category in product.categories" class="mx-1" :key="category">{{ category }}</v-chip>
@@ -34,6 +40,9 @@
                 </v-btn>
                 <v-btn text icon color="red" @click="deleteProduct">
                     <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn text icon color="green" @click="">
+                    <v-icon>shopping_cart</v-icon>
                 </v-btn>
 
 
@@ -100,7 +109,8 @@
                 'a',
                 'b',
                 'c',
-            ]
+            ],
+            mytastes: null
         }),
 
         methods: {
@@ -137,6 +147,10 @@
                     this.$emit('delete');
                 });
             },
+            getlitTastes()
+            {
+
+            }
         }
     };
 </script>

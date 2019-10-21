@@ -5,14 +5,11 @@
 
         <v-content>
             <v-container>
-                <product-list :search="search"></product-list>
+<!--                <product-list :search="search"></product-list>-->
+                <router-view>  </router-view>
             </v-container>
 
 
-<!--            <Product name="Formula_1"/>-->
-<!--&lt;!&ndash;            <Product name="Niteworks"/>&ndash;&gt;-->
-<!--            <Product :name="product.name" v-for="product in products" :key="product.name"/>-->
-<!--            <router-view></router-view>-->
         </v-content>
 
 
