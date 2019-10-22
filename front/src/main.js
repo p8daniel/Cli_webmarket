@@ -1,18 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-// import router from './router';
-import VueRouter from 'vue-router'
+import router from './router';
+// import VueRouter from 'vue-router'
 
 Vue.config.productionTip = false
 
-Vue.use(VueRouter)
-
-import ProductList from './components/ProductList';
-import Basket from './components/Basket';
-import MyAccount from './components/MyAccount';
-import BasketCheckout from './components/BasketCheckout'
-import Register from './components/Register'
+// Vue.use(VueRouter)
+//
+// import ProductList from './components/ProductList';
+// import Basket from './components/Basket';
+// import MyAccount from './components/MyAccount';
+// import BasketCheckout from './components/BasketCheckout'
+// import Register from './components/Register'
 
 // Vue.config.productionTip = false
 // Vue.prototype.$eventBus = new Vue()
@@ -23,31 +23,32 @@ import Register from './components/Register'
 //   }
 // })
 
-const routers= [{
- name: 'Home',
- path: '/',
-  component: ProductList
-},{
- name: 'Basket',
- path: '/basket',
-  component: Basket
-},{
- name: 'MyAccount',
- path: '/my-account',
-  component: MyAccount
-},{
-  name: 'BasketCheckout',
-  path: '/basket/checkout',
-  component: BasketCheckout
-}
-,{
-  name: 'Register',
-  path: '/register',
-  component: Register
-}
-]
-
-const router = new VueRouter({mode: 'history', routes: routers})
+// const routers= [{
+//  name: 'Home',
+//  path: '/',
+//     params: ['search', 'search_category'],
+//   component: ProductList
+// },{
+//  name: 'Basket',
+//  path: '/basket',
+//   component: Basket
+// },{
+//  name: 'MyAccount',
+//  path: '/my-account',
+//   component: MyAccount
+// },{
+//   name: 'BasketCheckout',
+//   path: '/basket/checkout',
+//   component: BasketCheckout
+// }
+// ,{
+//   name: 'Register',
+//   path: '/register',
+//   component: Register
+// }
+// ]
+//
+// const router = new VueRouter({mode: 'history', routes: routers})
 
 new Vue({
   vuetify,

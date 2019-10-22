@@ -106,7 +106,7 @@
                             <v-btn
                                    text
                               v-on="on"
-                                   @click="getCategories"
+                               @click="getCategories"
                             >
                               Categories
                             </v-btn>
