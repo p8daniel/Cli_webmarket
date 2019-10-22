@@ -4,6 +4,8 @@ from flask_restful import Api
 from webmarket.models.database import db
 
 from webmarket.api.products import Product, Products, Categories
+from webmarket.api.clients import Client
+
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)

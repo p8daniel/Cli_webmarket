@@ -30,7 +30,7 @@
 
      <v-text-field
       v-model="newclient.password"
-      :rules="emailRules"
+      :rules="passwordRules"
       label="Password"
       required
     ></v-text-field>
@@ -43,15 +43,14 @@
 <!--      required-->
 <!--    ></v-select>-->
 
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
+<!--    <v-checkbox-->
+<!--      v-model="checkbox"-->
+<!--      :rules="[v => !!v || 'You must agree to continue!']"-->
+<!--      label="Do you agree?"-->
+<!--      required-->
+<!--    ></v-checkbox>-->
 
     <v-btn
-      :disabled="!valid"
       color="success"
       class="mr-4"
       @click="RegisterClientt"
@@ -62,7 +61,7 @@
     <v-btn
       color="error"
       class="mr-4"
-      @click="reset"
+      @click=""
       href="/"
     >
       Cancel
@@ -101,13 +100,13 @@
 
         methods: {
             RegisterClientt() {
+                // eslint-disable-next-line no-console
+                console.log(this.newclient)
 
-                console.log("newclient")
-
-                // axios.post('http://localhost:8000/api/v1/client/' + this.client.name, this.product_edited).then(() => {
-                //     this.$emit('client added');
+                axios.post('http://localhost:8000/api/v1/client/', this.newclient).then(() => {
+                this.$emit('client added');
                     // console.log(JSON.stringify(response.data));
-                // });
+                });
 
             }
 
@@ -118,6 +117,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

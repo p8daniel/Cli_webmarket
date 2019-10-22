@@ -117,9 +117,11 @@
 
                               v-for="(category, index) in categories"
                               :key="index"
-                              @click=""
+                              :item="category"
+
+                              @click="printsomething"
                             >
-                              <v-list-item-title>{{ category }}</v-list-item-title>
+                              <v-list-item-title v-model="search_category">{{ category }}</v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
@@ -145,7 +147,6 @@
 
                               v-for="(product, index) in products"
                               :key="index"
-                              @click=""
                             >
                               <v-list-item-title>{{ product.name }}</v-list-item-title>
                             </v-list-item>
@@ -224,7 +225,8 @@
     data: () => ({//
 
         categories: null,
-        search_bar: "",
+        search_product: "",
+        search_category:"",
         products: null,
         showPassword: false, //for the login
         links: [
@@ -269,8 +271,13 @@
         searchProducts() {
 
          this.searchAvailable =! this.searchAvailable,
-             this.$emit("search",this.search_bar)
+             this.$emit("search",this.search_product, "search_category", this.search_category)
+
         // debugger;
+        },
+        printsomething(){
+            // eslint-disable-next-line no-console
+            console.log(this.search_category)
         }
 
 
