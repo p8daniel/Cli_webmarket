@@ -8,7 +8,6 @@ class Product(Model):
     name = CharField()
     instruction = CharField(null=True)
     #description = CharField()
-    price = FloatField()
     #stock=IntegerField()
     sprite=CharField(null=True)
 
@@ -46,7 +45,7 @@ class Product(Model):
 
     def get_small_data(self):
         return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
-                 'detail': self.detail, 'tastes':self.get_taste_name(),'price':self.price}
+                 'detail': self.detail, 'tastes':self.get_taste_name()}
 
 # 'price': self.price, 'taste': self.taste, 'stock': self.stock, 'label': self.label
 
@@ -59,6 +58,7 @@ class Taste(Model):
     id=PrimaryKeyField
     name=CharField(null=True)
     stock=IntegerField()
+    price = FloatField(null=True)
     label=CharField(null=True)
     product_id=ForeignKeyField(Product, backref='tastes')
     internal_id = IntegerField()

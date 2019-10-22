@@ -34,13 +34,13 @@ def loadfiledata(name="./webmarket/dati_review141019.csv"):
             print(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
             add_new_product(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
 
-def get_products_by_price(min_price):
-    results = []
-    products = Product.select()
-    for product in products:
-        if product.price <= min_price:
-            results.append(product)
-    return results
+# def get_products_by_price(min_price):
+#     results = []
+#     products = Product.select()
+#     for product in products:
+#         if product.price <= min_price:
+#             results.append(product)
+#     return results
 
 def get_products_by_category(category):
      results = []
@@ -62,18 +62,18 @@ def add_new_product(name,price,category,sub_name,taste,sprite,internal_id,stock,
 
 
     if product is None:
-        product = Product.create(name=name, price=price, instruction=instruction, detail=sub_name, sprite=sprite)
-        Taste.create(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
+        product = Product.create(name=name, instruction=instruction, detail=sub_name, sprite=sprite)
+        Taste.create(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
 
     else: #the product already exit -> we update it
 
         tastelem=Taste.get_or_none(internal_id=internal_id)
         if tastelem is None:
-            Taste.create(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
+            Taste.create(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
         else:
-            Taste.update(name=taste, internal_id=internal_id, stock=stock, label=label, product_id=product)
+            Taste.update(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
         ProductCategory.delete().where(ProductCategory.product == product).execute() # find the productcategory element associated with the product
-        product.update(name=name, price=price, instruction=instruction, detail=sub_name, sprite=sprite)
+        product.update(name=name, instruction=instruction, detail=sub_name, sprite=sprite)
 
 
     # correspond to the two options (if and else)
