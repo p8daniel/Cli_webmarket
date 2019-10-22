@@ -1,12 +1,13 @@
 <template>
-    <v-app>
+        <v-app>
 
-        <Appbar @search="searchProducts"> </Appbar>
+        <Appbar @inputData="updateSearch"/>
+
 
         <v-content>
             <v-container>
-<!--                <product-list :search="search"></product-list>-->
-                <router-view>  </router-view>
+                <product-list :search="search"></product-list>
+<!--                <router-view>  </router-view>-->
             </v-container>
 
 
@@ -24,7 +25,7 @@
 
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
     // import Product from './components/Product';
     import ProductList from './components/ProductList';
     import Appbar from "./components/Appbar";
@@ -37,13 +38,14 @@
         name: 'App',
         components: {
                 //Product,
-                // ProductList,
+                ProductList,
                 Appbar,
                 BottomBar
 
             },
             data: () => ({//
-                search: null,
+                search: "",
+                search_category: "",
                 categories: null,
                 products: null,
                 showPassword: false, //for the login
@@ -64,12 +66,19 @@
 
 
              methods:{
-                searchProducts()  {
-                    let params = {query: this.search};
-                    axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-                        this.products = response.data;
-                        // console.log(this.products)
-                    });
+                updateSearch(variable) {
+                    this.search=variable
+
+                }
+
+                // searchProducts()  {
+                //
+                //
+                //     let params = {query: this.search, query2: this.search_category};
+                //     axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+                //     this.products = response.data;
+                //         console.log(this.products)
+                //     });
             },
         //     getCategories() {
         //         axios.get('http://localhost:8000/api/v1/categories').then((response) => {
@@ -84,7 +93,7 @@
         //         });
         //
         //     }
-        }
+        // }
 
 
         };

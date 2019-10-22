@@ -61,11 +61,12 @@
                         class="mr-2"
                         label="Search ..."
 
-                        v-model="search_bar"
+                        v-model="search_product"
                         clearable
                         single-line
                         light
                         solo
+                        @keyup.enter="submit_search"
                 >
                 </v-text-field>
 
@@ -248,38 +249,36 @@
 
     }),
 
-        methods
-    :
-    {
+        methods: {
 
-        getCategories()
-        {
-            axios.get('http://localhost:8000/api/v1/categories').then((response) => {
-                this.categories = response.data;
-            });
-        }
-    ,
+            getCategories() {
+                axios.get('http://localhost:8000/api/v1/categories').then((response) => {
+                    this.categories = response.data;
+                });
+            }
+            ,
 
-        getProducts()
-        {
-            let params = {query: "", query2:""};
-            axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
-                this.products = response.data;
-            });
+            getProducts() {
+                let params = {query: "", query2: ""};
+                axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
+                    this.products = response.data;
+                });
 
-        },
-        searchProducts() {
+            },
+            searchProducts() {
 
-         this.searchAvailable =! this.searchAvailable,
-             this.$emit("search",this.search_product, "search_category", this.search_category)
+                this.searchAvailable = !this.searchAvailable
 
-        // debugger;
-        },
-        printsomething(){
-            // eslint-disable-next-line no-console
-            console.log(this.search_category)
-        }
+                // debugger;
+            },
+            printsomething() {
+                // eslint-disable-next-line no-console
+                console.log(this.search_category)
+            },
+            submit_search() {
 
+                this.$emit("inputData", this.search_product)
+            }
 
     }
     };

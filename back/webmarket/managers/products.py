@@ -102,8 +102,13 @@ def search_products(query, category):
     else:
         query = query.lower()
         products = Product.select().where(Product.name.contains(query))
+        # for product in products:
+        #
+        #
+        #     print(product.name)
 
-        if category is not None:
+        if category:
+            # print("ciao")
             filtered_products = []
             for product in products:
                 # types = [t.type.name for t in pokemon.types]
