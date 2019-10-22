@@ -1,8 +1,8 @@
-import requests
+# import requests
 import csv
-import re
+# import re
 
-from webmarket.models.product import Product, ProductCategory, Category
+from webmarket.models.product import Product, ProductCategory, Category, Taste
 
 
 def get_product_by_name(name):
@@ -10,7 +10,7 @@ def get_product_by_name(name):
     return product
 
 
-def loadfiledata(name="./webmarket/dati.csv"):
+def loadfiledata(name="./webmarket/dati_review141019.csv"):
     with open(name, 'r') as f:
         reader=csv.DictReader(f)
         #dict=[]
@@ -18,22 +18,29 @@ def loadfiledata(name="./webmarket/dati.csv"):
             #print(row)
 
             name = row['name']
-            name = re.sub(' ', '_', name)
+            #name = re.sub(' ', '_', name)
             price = row['price']
             category = row['category']
-            category = re.sub(' ', '_', category)
+
+            sub_name=row['sub_name']
+            taste=row['taste']
+            sprite=row['sprite']
+            internal_id=row['internal_id']
+            stock=row['stock']
+            label=row['label']
+            #category = re.sub(' ', '_', category)
 
             #dict={'name':row['name'], 'price': row['price'], 'category':row['category'] }
-            #print(name, price, category)
-            add_new_product(name,price,category,"null")
+            print(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
+            add_new_product(name, price, category, sub_name, taste, sprite, internal_id, stock, label)
 
-def get_products_by_price(min_price):
-    results = []
-    products = Product.select()
-    for product in products:
-        if product.price <= min_price:
-            results.append(product)
-    return results
+# def get_products_by_price(min_price):
+#     results = []
+#     products = Product.select()
+#     for product in products:
+#         if product.price <= min_price:
+#             results.append(product)
+#     return results
 
 def get_products_by_category(category):
      results = []
@@ -47,7 +54,7 @@ def get_products_by_category(category):
      return results
 
 
-def add_new_product(name, price, category, instruction): #instruction is optional
+def add_new_product(name,price,category,sub_name,taste,sprite,internal_id,stock,label, instruction="No instructions"): #instruction is optional
     """ create a new product in the database"""
 
 
@@ -55,12 +62,18 @@ def add_new_product(name, price, category, instruction): #instruction is optiona
 
 
     if product is None:
-        product = Product.create(name=name, price=price, instruction=instruction)
+        product = Product.create(name=name, instruction=instruction, detail=sub_name, sprite=sprite)
+        Taste.create(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
 
     else: #the product already exit -> we update it
 
+        tastelem=Taste.get_or_none(internal_id=internal_id)
+        if tastelem is None:
+            Taste.create(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
+        else:
+            Taste.update(name=taste, price=price, internal_id=internal_id, stock=stock, label=label, product_id=product)
         ProductCategory.delete().where(ProductCategory.product == product).execute() # find the productcategory element associated with the product
-        product.update(name=name, price=price, instruction=instruction)
+        product.update(name=name, instruction=instruction, detail=sub_name, sprite=sprite)
 
 
     # correspond to the two options (if and else)
@@ -70,7 +83,7 @@ def add_new_product(name, price, category, instruction): #instruction is optiona
     ProductCategory.create(product=product, category=query)  # like join two table in another table
     print(product.name)
     return product
-    print(product.name)
+
 
 
 def delete_product(product_name):
@@ -79,35 +92,35 @@ def delete_product(product_name):
     return True
 
 
-def search_products(query):
+
+
+
+def search_products(query, category):
     if not query:
         print("Not query...")
         products = Product.select()
     else:
         query = query.lower()
         products = Product.select().where(Product.name.contains(query))
+        # for product in products:
+        #
+        #
+        #     print(product.name)
+
+        if category:
+            # print("ciao")
+            filtered_products = []
+            for product in products:
+                # types = [t.type.name for t in pokemon.types]
+                categories = []
+                productcategories_de_ce_produit = ProductCategory.select().where(ProductCategory.product == product)
+                for productcategory in productcategories_de_ce_produit:
+                    category_name = productcategory.category.name
+                    categories.append(category_name)
+
+                if category in categories:
+                    filtered_products.append(product)
+            return filtered_products
 
     return products
 
-#types = [a.type.name for a in product.types]
-
-# def search_types(query):
-#     query = query.lower()
-#     results = []
-#
-#     products = Product.select()
-#     for product in products:
-#         if product.hp >= min_hp:
-#             results.append(product)
-#
-#     return results
-#
-#     ids = ProductCategories.select().where(ProductTypes.type==query)
-#
-#     products = Product.select().where(Product.id== ids.id)
-#     return products
-
-
-#query = Typex.select().where(Typex.name == )
-
-#ProductTypes.delete().where(ProductTypes.product == query).execute()

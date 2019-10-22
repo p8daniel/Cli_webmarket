@@ -8,9 +8,10 @@ class Client(Model):
     id = PrimaryKeyField()
     name = CharField()
     surname = CharField()
-    gender = CharField()
-    age= IntegerField()
-    mail= CharField()
+    #gender = CharField()
+    # age= IntegerField()
+    email= CharField()
+    password=CharField()
 
 
     class Meta:

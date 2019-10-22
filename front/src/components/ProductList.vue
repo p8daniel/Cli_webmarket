@@ -19,7 +19,7 @@
 
     export default {
         name: "ProductList",
-        props: ['search'],
+        props: ['search','search_category'],
         data: () => ({
             products: []
         }),
@@ -40,8 +40,12 @@
                 if (!search) {
                     search = "";
                 }
+                let search_category = this.search_category;
+                if (!search_category) {
+                    search_category = "";
+                }
 
-                let params = {query: search};
+                let params = {query: search,query2: search_category};
                 axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
                     this.products = response.data;
                 });
