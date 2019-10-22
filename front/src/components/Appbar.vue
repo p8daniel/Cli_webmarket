@@ -84,11 +84,11 @@
 <!--                <v-icon>mdi-dots-vertical</v-icon>-->
 <!--            </v-btn>-->
 
-            <v-btn icon>
+            <v-btn icon href="/basket">
                 <v-badge left color="green">
                     <span slot="badge"></span>
                 <v-icon>shopping_cart</v-icon>
-                    <a href="/basket">Basket</a>
+                    Basket
             </v-badge>
 
             </v-btn>
@@ -156,7 +156,7 @@
             </template>
 
             <v-spacer></v-spacer>
-        <v-btn text rounded><a href="/">Home</a></v-btn>
+        <v-btn text rounded href="/">Home</v-btn>
 
 
 <!--            <v-row justify="center">-->
@@ -195,7 +195,7 @@
                             </v-form>
                         </v-card-text>
                         <v-card-action>
-                            <v-btn color="success">Register</v-btn>
+                            <v-btn color="success" href="/register">Register</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn color="info">Login</v-btn>
                         </v-card-action>
@@ -260,7 +260,7 @@
 
         getProducts()
         {
-            let params = {query: ""};
+            let params = {query: "", query2:""};
             axios.get('http://localhost:8000/api/v1/products', {params: params}).then((response) => {
                 this.products = response.data;
             });

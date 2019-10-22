@@ -37,7 +37,7 @@
         name: 'App',
         components: {
                 //Product,
-                ProductList,
+                // ProductList,
                 Appbar,
                 BottomBar
 

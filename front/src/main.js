@@ -12,6 +12,16 @@ import ProductList from './components/ProductList';
 import Basket from './components/Basket';
 import MyAccount from './components/MyAccount';
 import BasketCheckout from './components/BasketCheckout'
+import Register from './components/Register'
+
+// Vue.config.productionTip = false
+// Vue.prototype.$eventBus = new Vue()
+// export const Authentique = new Vue({
+//   data: {
+//     is_authentique: false,
+//     search:"",
+//   }
+// })
 
 const routers= [{
  name: 'Home',
@@ -30,6 +40,11 @@ const routers= [{
   path: '/basket/checkout',
   component: BasketCheckout
 }
+,{
+  name: 'Register',
+  path: '/register',
+  component: Register
+}
 ]
 
 const router = new VueRouter({mode: 'history', routes: routers})
@@ -37,7 +52,11 @@ const router = new VueRouter({mode: 'history', routes: routers})
 new Vue({
   vuetify,
   router,
-  render: h => h(App)
+  render: h => h(App),
+    data: {
+
+
+    }
 }).$mount('#app')
 
 

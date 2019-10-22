@@ -1,6 +1,6 @@
-import requests
+# import requests
 import csv
-import re
+# import re
 
 from webmarket.models.product import Product, ProductCategory, Category, Taste
 
@@ -92,45 +92,30 @@ def delete_product(product_name):
     return True
 
 
-def search_products(query, query2):
-    if not query:
-        if not query2:
-            print("Not query...")
-            products = Product.select()
-        else:
-            query2 = query2.lower()
-            products = Product.select().where(Product.category.contains(query2))
 
+
+
+def search_products(query, category):
+    if not query:
+        print("Not query...")
+        products = Product.select()
     else:
-        if not query2:
-            query = query.lower()
-            products = Product.select().where(Product.name.contains(query))
-        else:
-            query = query.lower()
-            query2 = query2.lower()
-            products = Product.select().where(Product.name.contains(query), Product.categoy.contains(query2))
+        query = query.lower()
+        products = Product.select().where(Product.name.contains(query))
+
+        if category is not None:
+            filtered_products = []
+            for product in products:
+                # types = [t.type.name for t in pokemon.types]
+                categories = []
+                productcategories_de_ce_produit = ProductCategory.select().where(ProductCategory.product == product)
+                for productcategory in productcategories_de_ce_produit:
+                    category_name = productcategory.category.name
+                    categories.append(category_name)
+
+                if category in categories:
+                    filtered_products.append(product)
+            return filtered_products
 
     return products
 
-#types = [a.type.name for a in product.types]
-
-# def search_types(query):
-#     query = query.lower()
-#     results = []
-#
-#     products = Product.select()
-#     for product in products:
-#         if product.hp >= min_hp:
-#             results.append(product)
-#
-#     return results
-#
-#     ids = ProductCategories.select().where(ProductTypes.type==query)
-#
-#     products = Product.select().where(Product.id== ids.id)
-#     return products
-
-
-#query = Typex.select().where(Typex.name == )
-
-#ProductTypes.delete().where(ProductTypes.product == query).execute()
