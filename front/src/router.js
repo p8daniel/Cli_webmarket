@@ -31,9 +31,19 @@ export default new Router({
      {
  name: 'Home',
  path: '/',
-    params: ['search', 'search_category'],
+    // params: ['search', 'search_category'],
   component: ProductList
 },{
+     path: '/:search',
+         props:true,
+  component: ProductList
+},{
+     path: '/category/:search_category',
+         props:true,
+  component: ProductList
+},
+
+     {
  name: 'Basket',
  path: '/basket',
   component: Basket

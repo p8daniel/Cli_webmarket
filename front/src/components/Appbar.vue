@@ -277,8 +277,14 @@
             },
             submit_search() {
 
-                this.$emit("inputData", this.search_product)
-            }
+                //this.$emit("inputData", this.search_product)
+                this.$router.push('/' +this.search_product)
+            },
+            submit_search_category() {
+
+                //this.$emit("inputData", this.search_product)
+                this.$router.push('/category/' +this.search_category)
+            },
 
     }
     };
