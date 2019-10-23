@@ -10,7 +10,7 @@ class Products(Resource):
         query2 = request.args['query2']
         products_matching = search_products(query,query2)
         products = [product.get_small_data() for product in products_matching]
-        #print(products)
+        # print(products)
         return products
     def post(self):
         data = request.json

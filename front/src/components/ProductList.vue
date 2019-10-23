@@ -43,6 +43,9 @@
         watch: {
             search() {
                 this.searchProducts();
+            },
+            search_category() {
+                this.searchProducts();
             }
         },
         created() {

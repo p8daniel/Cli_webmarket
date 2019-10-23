@@ -29,18 +29,26 @@ export default new Router({
      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
    },
      {
- name: 'Home',
- path: '/',
-    // params: ['search', 'search_category'],
+         name: 'Home',
+         path: '/',
+         // params: ['search', 'search_category'],
+         component: ProductList
+     },
+// },{
+//      path: '/search',
+//          component: ProductList,
+//          props: (route) => ({ query: route.query.q })
+//      },
+{
+    path: '/:search',
+  props:true,
   component: ProductList
-},{
-     path: '/:search',
-         props:true,
-  component: ProductList
-},{
-     path: '/category/:search_category',
-         props:true,
-  component: ProductList
+},
+
+{
+    path: '/category/:search_category',
+    props:true,
+    component: ProductList
 },
 
      {

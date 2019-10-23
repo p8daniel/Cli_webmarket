@@ -99,16 +99,8 @@ def search_products(query, category):
     if not query:
         print("Not query...")
         products = Product.select()
-    else:
-        query = query.lower()
-        products = Product.select().where(Product.name.contains(query))
-        # for product in products:
-        #
-        #
-        #     print(product.name)
-
         if category:
-            # print("ciao")
+            #print("ciao")
             filtered_products = []
             for product in products:
                 # types = [t.type.name for t in pokemon.types]
@@ -121,6 +113,29 @@ def search_products(query, category):
                 if category in categories:
                     filtered_products.append(product)
             return filtered_products
+    else:
+        query = query.lower()
+        products = Product.select().where(Product.name.contains(query))
+        # for product in products:
+        #
+        #
+        #     print(product.name)
 
+        if category:
+            #print("ciao")
+            filtered_products = []
+            for product in products:
+                # types = [t.type.name for t in pokemon.types]
+                categories = []
+                productcategories_de_ce_produit = ProductCategory.select().where(ProductCategory.product == product)
+                for productcategory in productcategories_de_ce_produit:
+                    category_name = productcategory.category.name
+                    categories.append(category_name)
+
+                if category in categories:
+                    filtered_products.append(product)
+            return filtered_products
+    # for product in products:
+    #     print(product.name)
     return products
 

@@ -120,9 +120,11 @@
                               :key="index"
                               :item="category"
 
-                              @click="printsomething"
+                              :to="{path:'/category/' + category}"
+
+                              active-class="active"
                             >
-                              <v-list-item-title v-model="search_category">{{ category }}</v-list-item-title>
+                              <v-list-item-title v-model="search_category">{{category}}</v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
@@ -279,11 +281,17 @@
 
                 //this.$emit("inputData", this.search_product)
                 this.$router.push('/' +this.search_product)
+                //this.$router.push('/search?q=' +this.search_product)
             },
             submit_search_category() {
 
                 //this.$emit("inputData", this.search_product)
                 this.$router.push('/category/' +this.search_category)
+
+
+
+
+
             },
 
     }
