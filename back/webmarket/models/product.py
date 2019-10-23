@@ -27,7 +27,7 @@ class Product(Model):
     def get_taste_name(self):
         names = []
         for product_taste in self.tastes:
-            print(product_taste)
+            #print(product_taste)
             mydict={
                 'name':product_taste.name,
                 'stock':product_taste.stock,

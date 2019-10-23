@@ -150,6 +150,7 @@
 
                               v-for="(product, index) in products"
                               :key="index"
+                              :to="{path:'/' + product.name}"
                             >
                               <v-list-item-title>{{ product.name }}</v-list-item-title>
                             </v-list-item>
@@ -273,25 +274,15 @@
 
                 // debugger;
             },
-            printsomething() {
-                // eslint-disable-next-line no-console
-                console.log(this.search_category)
-            },
+            // printsomething() {
+            //     // eslint-disable-next-line no-console
+            //     console.log(this.search_category)
+            // },
             submit_search() {
 
                 //this.$emit("inputData", this.search_product)
                 this.$router.push('/' +this.search_product)
                 //this.$router.push('/search?q=' +this.search_product)
-            },
-            submit_search_category() {
-
-                //this.$emit("inputData", this.search_product)
-                this.$router.push('/category/' +this.search_category)
-
-
-
-
-
             },
 
     }
