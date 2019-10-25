@@ -1,13 +1,17 @@
 <template>
         <v-app>
 
-        <Appbar @inputData="updateSearch"/>
+        <Appbar @inputData="updateSearch" @inputData2="updateSearch2"/>
 
 
         <v-content>
             <v-container>
-                <product-list :search="search"></product-list>
-<!--                <router-view>  </router-view>-->
+<!--                <product-list :search="search" :search_category="search_category"></product-list>-->
+                <router-view :to="{ name: 'Home', params: {search:this.search, search_category:this.search_category}}"> </router-view>
+
+
+
+
             </v-container>
 
 
@@ -27,7 +31,7 @@
 <script>
     // import axios from 'axios';
     // import Product from './components/Product';
-    import ProductList from './components/ProductList';
+    //import ProductList from './components/ProductList';
     import Appbar from "./components/Appbar";
     import BottomBar from "./components/BottomBar";
 
@@ -38,7 +42,7 @@
         name: 'App',
         components: {
                 //Product,
-                ProductList,
+               // ProductList,
                 Appbar,
                 BottomBar
 
@@ -68,7 +72,9 @@
              methods:{
                 updateSearch(variable) {
                     this.search=variable
-
+                },
+                updateSearch2(variable) {
+                    this.search_category=variable
                 }
 
                 // searchProducts()  {

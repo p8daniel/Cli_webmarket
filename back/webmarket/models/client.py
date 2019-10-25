@@ -12,6 +12,8 @@ class Client(Model):
     # age= IntegerField()
     email= CharField()
     password=CharField()
+    actual_basket=CharField()
+
 
 
     class Meta:

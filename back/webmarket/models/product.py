@@ -27,14 +27,14 @@ class Product(Model):
     def get_taste_name(self):
         names = []
         for product_taste in self.tastes:
-            print(product_taste)
-            mydict={
-                'name':product_taste.name,
-                'stock':product_taste.stock,
-                'label':product_taste.label,
-                # "price":product_taste.price,
-            }
-            names.append(mydict)
+            #print(product_taste)
+            # mydict={
+            #     'name':product_taste.name,
+            #     'stock':product_taste.stock,
+            #     'label':product_taste.label,
+            #     # "price":product_taste.price,
+            # }
+            names.append(product_taste.name)
         return names
 
     def get_taste_prices(self):
@@ -68,9 +68,9 @@ class Taste(Model):
         database = db
         schema = 'public'
 
-
-
-
+    def get_small_data(self):
+        return {'name': self.name, 'stock': self.stock, 'price': self.price,
+                 'label': self.label}
 
 
 class Category(Model):

@@ -19,9 +19,23 @@
 
     export default {
         name: "ProductList",
-        props: ['search','search_category'],
+        // props: ['search','search_category'],
+        props:{
+            search: {
+                type: String,
+                default: ""
+            },
+            search_category: {
+                type: String,
+                default: ""
+
+            }
+        },
         data: () => ({
-            products: []
+            products: [],
+            // search: this.$router.params.search,
+            // search_category: this.$router.params.search_category
+
         }),
         components: {
             Product,
@@ -29,10 +43,14 @@
         watch: {
             search() {
                 this.searchProducts();
+            },
+            search_category() {
+                this.searchProducts();
             }
         },
         created() {
             this.searchProducts();
+
         },
         methods: {
             searchProducts() {

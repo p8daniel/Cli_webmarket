@@ -2,6 +2,8 @@
 
     <v-app>
 
+
+<!--        left menu-->
         <v-navigation-drawer v-model="drawer" app temporary>
         <v-list>
 
@@ -106,7 +108,7 @@
                             <v-btn
                                    text
                               v-on="on"
-                                   @click="getCategories"
+                               @click="getCategories"
                             >
                               Categories
                             </v-btn>
@@ -120,9 +122,11 @@
                               :key="index"
                               :item="category"
 
-                              @click="printsomething"
+                              :to="{path:'/category/' + category}"
+
+                              active-class="active"
                             >
-                              <v-list-item-title v-model="search_category">{{ category }}</v-list-item-title>
+                              <v-list-item-title v-model="search_category">{{category}}</v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
@@ -148,6 +152,7 @@
 
                               v-for="(product, index) in products"
                               :key="index"
+                              :to="{path:'/' + product.name}"
                             >
                               <v-list-item-title>{{ product.name }}</v-list-item-title>
                             </v-list-item>
@@ -196,11 +201,11 @@
                                 />
                             </v-form>
                         </v-card-text>
-                        <v-card-action>
+                        <v-card-actions>
                             <v-btn color="success" href="/register">Register</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn color="info">Login</v-btn>
-                        </v-card-action>
+                        </v-card-actions>
 
                     </v-card>
 
@@ -271,14 +276,16 @@
 
                 // debugger;
             },
-            printsomething() {
-                // eslint-disable-next-line no-console
-                console.log(this.search_category)
-            },
+            // printsomething() {
+            //     // eslint-disable-next-line no-console
+            //     console.log(this.search_category)
+            // },
             submit_search() {
 
-                this.$emit("inputData", this.search_product)
-            }
+                //this.$emit("inputData", this.search_product)
+                this.$router.push('/' +this.search_product)
+                //this.$router.push('/search?q=' +this.search_product)
+            },
 
     }
     };
