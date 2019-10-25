@@ -14,13 +14,14 @@ Vue.use(Router)
 export default new Router({
  mode: 'history',
  base: process.env.BASE_URL,
+
  routes: [
    // {
    //   path: '/',
    //   name: 'home',
    //   component: Home
    // },
-   {
+     {
      path: '/about',
      name: 'about',
      // route level code-splitting
@@ -55,16 +56,19 @@ export default new Router({
  name: 'Basket',
  path: '/basket',
   component: Basket
-},{
+},
+     {
  name: 'MyAccount',
  path: '/my-account',
   component: MyAccount
-},{
+},
+     {
   name: 'BasketCheckout',
   path: '/basket/checkout',
   component: BasketCheckout
 }
-,{
+,
+     {
   name: 'Register',
   path: '/register',
   component: Register

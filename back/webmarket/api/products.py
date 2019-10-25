@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 
-from webmarket.managers.products import search_products, get_product_by_name, add_new_product, delete_product
+from webmarket.managers.products import search_products, get_product_by_name, add_new_product, delete_product, get_taste_by_name
 from webmarket.managers.categories import get_list_categories
 
 class Products(Resource):
@@ -31,7 +31,16 @@ class Product(Resource):
         result = delete_product(product_name)
         return result
 
+
 class Categories(Resource):
     def get(self):
         categories=get_list_categories()
         return categories
+
+class Taste(Resource):
+    def get(self, product_name, taste_name):
+        taste=get_taste_by_name(product_name, taste_name)
+        return taste.get_taste_data
+
+
+

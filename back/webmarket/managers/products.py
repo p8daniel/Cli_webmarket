@@ -139,3 +139,7 @@ def search_products(query, category):
     #     print(product.name)
     return products
 
+def get_taste_by_name(product_name, taste_name):
+    product = Product.get(name=product_name)
+    taste=Taste.get(name=taste_name, product_id=product)
+    return taste

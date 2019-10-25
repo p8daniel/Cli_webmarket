@@ -21,9 +21,10 @@
             <v-col class="d-flex" cols="12" sm="6">
                     <v-select
 
-                      :items= (v-for="taste.name in product.tastes")
+                      :items= "product.tastes"
                       label="Select taste"
                       solo
+                      @click="getTasteData"
                     ></v-select>
 
             </v-col>
@@ -58,7 +59,7 @@
             <v-dialog v-model="edit" persistent max-width="600px">
                 <v-card v-if="product_edited">
                     <v-card-title class="mb-1">
-                        <span class="display-1">{{ product.name }}</span>
+                        <span class="display-1">{{product.name}}</span>
                     </v-card-title>
                     <v-card-text>
                         <v-container>
@@ -110,10 +111,16 @@
                 'b',
                 'c',
             ],
-            mytastes: null
+            select_taste_name: this.product.tastes[0],
+            select_taste: null
         }),
 
         methods: {
+
+            created() {
+                this.getTasteData();
+
+            },
             startEditProduct() {
                 this.categories = [];
                 this.product_edited = {
@@ -147,8 +154,11 @@
                     this.$emit('delete');
                 });
             },
-            getlitTastes()
+            getTasteData()
             {
+                axios.get('http://localhost:8000/api/v1/product/' + this.product.name+ this.select_taste_name).then((response) => {
+                    this.select_taste = response.data
+                });
 
             }
         }

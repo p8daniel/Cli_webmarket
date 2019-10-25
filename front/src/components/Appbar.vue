@@ -2,6 +2,8 @@
 
     <v-app>
 
+
+<!--        left menu-->
         <v-navigation-drawer v-model="drawer" app temporary>
         <v-list>
 
@@ -199,11 +201,11 @@
                                 />
                             </v-form>
                         </v-card-text>
-                        <v-card-action>
+                        <v-card-actions>
                             <v-btn color="success" href="/register">Register</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn color="info">Login</v-btn>
-                        </v-card-action>
+                        </v-card-actions>
 
                     </v-card>
 
