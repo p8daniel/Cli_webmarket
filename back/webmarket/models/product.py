@@ -32,7 +32,7 @@ class Product(Model):
             #     'name':product_taste.name,
             #     'stock':product_taste.stock,
             #     'label':product_taste.label,
-            #     # "price":product_taste.price,
+            #     'price':product_taste.price,
             # }
             names.append(product_taste.name)
         return names

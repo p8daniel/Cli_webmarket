@@ -4,7 +4,7 @@
 
 
 <!--        left menu-->
-        <v-navigation-drawer v-model="drawer" app temporary>
+                <v-navigation-drawer v-model="drawer" app temporary>
         <v-list>
 
                 <v-list-item>
@@ -18,8 +18,7 @@
         </v-list>
         </v-navigation-drawer>
 
-
-    <v-app-bar
+        <v-app-bar
                 app
                 color="#4CAF50"
                 dark
@@ -215,6 +214,9 @@
 
         </v-app-bar>
 
+
+
+
     </v-app>
 </template>
 
@@ -239,8 +241,8 @@
             'Home',
             'Login'
         ],
-        drawer: false,
 
+        drawer: false,
 
         searchAvailable: false,
         logindialog: false,

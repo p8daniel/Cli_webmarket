@@ -1,14 +1,23 @@
-<template>
-        <v-app>
+
+    <template>
+    <v-app>
+
+
+
+
+
+
+        <v-app-bar>
 
         <Appbar @inputData="updateSearch" @inputData2="updateSearch2"/>
+
+            </v-app-bar>
 
 
         <v-content>
             <v-container>
 <!--                <product-list :search="search" :search_category="search_category"></product-list>-->
                 <router-view :to="{ name: 'Home', params: {search:this.search, search_category:this.search_category}}"> </router-view>
-
 
 
 
@@ -60,6 +69,7 @@
 
                 searchAvailable: false,
                 logindialog: false,
+                drawer: false,
 
 
 
