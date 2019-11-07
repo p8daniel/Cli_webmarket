@@ -6,9 +6,9 @@ from webmarket.models.database import db
 from webmarket.api.products import Product, Products, Categories, Taste
 from webmarket.api.clients import Basket
 
-
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
+
 
 # auth= Blueprint('auth', __name__)
 
@@ -27,8 +27,6 @@ def register_api(app):
     api.add_resource(Taste, '/product/<product_name>/<product_taste>')
     api.add_resource(Categories, '/categories')
     api.add_resource(Basket, '/basket')
-
-
 
     app.register_blueprint(api_bp, url_prefix="/api/v1")
 

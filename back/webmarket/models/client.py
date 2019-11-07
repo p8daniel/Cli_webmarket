@@ -1,10 +1,20 @@
 from peewee import *
+from playhouse.shortcuts import model_to_dict
 
 from .database import db
 from .product import Product
 
+class CommonModel(Model):
+    def get_small_data(self):
+        return model_to_dict(self, recurse=False, backrefs=False)
 
-class Client(Model):
+    class Meta:
+        database = db
+        schema = 'client'
+
+
+
+class Client(CommonModel):
     id = PrimaryKeyField()
     name = CharField()
     surname = CharField()
@@ -16,32 +26,20 @@ class Client(Model):
 
 
 
-    class Meta:
-        database = db
-        schema = 'public'
-
-
-
-class Avis(Model):
+class Avis(CommonModel):
     id=PrimaryKeyField()
     client=ForeignKeyField(Client, backref='avis_clients')
     product=ForeignKeyField(Product, backref='avis_produits')
     text=CharField()
 
-    class Meta:
-        database = db
-        schema = 'public'
 
 
-class Facture(Model):
+class Facture(CommonModel):
     id=PrimaryKeyField()
 
-    class Meta:
-        database = db
-        schema = 'public'
 
 
-class Panier(Model):
+class Panier(CommonModel):
     id=PrimaryKeyField()
     name=CharField
     total=FloatField()
@@ -49,30 +47,21 @@ class Panier(Model):
     facture=ForeignKeyField(Facture, backref='paniers')
 
 
-    class Meta:
-        database = db
-        schema = 'public'
 
-
-class PanierProduct(Model):
+class PanierProduct(CommonModel):
     id = PrimaryKeyField()
     number_products= IntegerField()
     product=ForeignKeyField(Product, backref='paniers')
     panier= ForeignKeyField(Panier, backref='products')
 
-    class Meta:
-        database = db
-        schema = 'public'
 
-class Discount(Model):
+
+class Discount(CommonModel):
     id=PrimaryKeyField()
     name=CharField()
     amount=FloatField()
     #panier=ForeignKeyField(Panier, backref='discounts')
 
-    class Meta:
-        database = db
-        schema = 'public'
 
 
 

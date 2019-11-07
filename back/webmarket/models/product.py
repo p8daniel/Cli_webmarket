@@ -1,9 +1,19 @@
 from peewee import *
 
 from .database import db
+from playhouse.shortcuts import model_to_dict
 
 
-class Product(Model):
+class CommonModel(Model):
+    def get_small_data(self):
+        return model_to_dict(self, recurse=False, backrefs=False)
+
+    class Meta:
+        database = db
+        schema = 'public'
+
+
+class Product(CommonModel):
     id = PrimaryKeyField()
     name = CharField()
     instruction = CharField(null=True)
@@ -14,34 +24,13 @@ class Product(Model):
     detail=CharField(null=True)
 
 
-    class Meta:
-        database = db
-        schema = 'public'
 
     def get_categorie_name(self):
-        names = []
-        for product_category in self.category:
-            names.append(product_category.category.name)
-        return names
+        return [product_category.category.name for product_category in self.category]
 
     def get_taste_name(self):
-        names = []
-        for product_taste in self.tastes:
-            #print(product_taste)
-            # mydict={
-            #     'name':product_taste.name,
-            #     'stock':product_taste.stock,
-            #     'label':product_taste.label,
-            #     'price':product_taste.price,
-            # }
-            names.append(product_taste.name)
-        return names
+        return [product_taste.name for product_taste in self.tastes]
 
-    def get_taste_prices(self):
-        prices = []
-        for product_taste in self.tastes:
-            prices.append(product_taste.price)
-        return prices
 
     def get_small_data(self):
         return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
@@ -54,7 +43,7 @@ with db:
     Product.create_table(fail_silently=True)
 
 
-class Taste(Model):
+class Taste(CommonModel):
     id=PrimaryKeyField
     name=CharField(null=True)
     stock=IntegerField()
@@ -64,43 +53,33 @@ class Taste(Model):
     internal_id = IntegerField()
 
 
-    class Meta:
-        database = db
-        schema = 'public'
 
     def get_small_data(self):
         return {'name': self.name, 'stock': self.stock, 'price': self.price,
                  'label': self.label}
 
 
-class Category(Model):
+class Category(CommonModel):
     id = PrimaryKeyField()
     name = CharField()
     #url = CharField()
 
-    class Meta:
-        database = db
-        schema = 'public'
 
 
 
-class ProductCategory(Model):
+
+class ProductCategory(CommonModel):
     id = PrimaryKeyField()
     product = ForeignKeyField(Product, backref='category')
     category = ForeignKeyField(Category, backref='products')
     #is_hidden = BooleanField()
     #slot = IntegerField()
 
-    class Meta:
-        database = db
-        schema = 'public'
 
 
 
 
 with db:
-    # Ability.create_table(fail_silently=True)
-    # PokemonAbilities.create_table(fail_silently=True)
     Category.create_table(fail_silently=True)
     ProductCategory.create_table(fail_silently=True)
     Taste.create_table(fail_silently=True)

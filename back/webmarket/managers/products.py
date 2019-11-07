@@ -143,3 +143,9 @@ def get_taste_by_name(product_name, taste_name):
     product = Product.get(name=product_name)
     taste=Taste.get(name=taste_name, product_id=product)
     return taste
+
+
+def get_tastes_from_product(product_x):
+
+    tastes = Taste.select().where(Taste.product_id == product_x)
+    return tastes
