@@ -21,7 +21,7 @@
             <v-col class="d-flex" cols="12" sm="6">
                     <v-select
 
-                      :items= "taste.name in product.tastes"
+                      :items= "product.tastes"
                       label="Select taste"
                       solo
                       @click="getTasteData"
