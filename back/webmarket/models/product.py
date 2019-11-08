@@ -17,24 +17,35 @@ class Product(CommonModel):
     id = PrimaryKeyField()
     name = CharField()
     instruction = CharField(null=True)
-    #description = CharField()
-    #stock=IntegerField()
-    sprite=CharField(null=True)
+    # description = CharField()
+    # stock=IntegerField()
+    sprite = CharField(null=True)
 
-    detail=CharField(null=True)
-
-
+    detail = CharField(null=True)
 
     def get_categorie_name(self):
         return [product_category.category.name for product_category in self.category]
 
     def get_taste_name(self):
+        return [product_taste.get_small_data() for product_taste in self.tastes]
+
+    @property
+    def taste_details(self):
         return [product_taste.name for product_taste in self.tastes]
 
+    def get_small_data(self, show_taste='false'):
 
-    def get_small_data(self):
-        return {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
-                 'detail': self.detail, 'tastes':self.get_taste_name()}
+
+        data= {'name': self.name, 'categories': self.get_categorie_name(), 'sprite': self.sprite,
+                'detail': self.detail}
+
+        if show_taste is True:
+            data['tastes']=self.taste_details
+
+
+        return data
+
+
 
 # 'price': self.price, 'taste': self.taste, 'stock': self.stock, 'label': self.label
 
@@ -44,39 +55,31 @@ with db:
 
 
 class Taste(CommonModel):
-    id=PrimaryKeyField
-    name=CharField(null=True)
-    stock=IntegerField()
+    id = PrimaryKeyField
+    name = CharField(null=True)
+    stock = IntegerField()
     price = FloatField(null=True)
-    label=CharField(null=True)
-    product_id=ForeignKeyField(Product, backref='tastes')
+    label = CharField(null=True)
+    product_id = ForeignKeyField(Product, backref='tastes')
     internal_id = IntegerField()
-
-
 
     def get_small_data(self):
         return {'name': self.name, 'stock': self.stock, 'price': self.price,
-                 'label': self.label}
+                'label': self.label}
 
 
 class Category(CommonModel):
     id = PrimaryKeyField()
     name = CharField()
-    #url = CharField()
-
-
-
+    # url = CharField()
 
 
 class ProductCategory(CommonModel):
     id = PrimaryKeyField()
     product = ForeignKeyField(Product, backref='category')
     category = ForeignKeyField(Category, backref='products')
-    #is_hidden = BooleanField()
-    #slot = IntegerField()
-
-
-
+    # is_hidden = BooleanField()
+    # slot = IntegerField()
 
 
 with db:

@@ -21,7 +21,7 @@
             <v-col class="d-flex" cols="12" sm="6">
                     <v-select
 
-                      :items= "product.tastes"
+                      :items= "taste.name in product.tastes"
                       label="Select taste"
                       solo
                       @click="getTasteData"
@@ -111,8 +111,9 @@
                 'b',
                 'c',
             ],
-            select_taste_name: this.product.tastes[0],
-            select_taste: null
+            select_taste_name: this.product.tastes[0].name,
+            select_taste: null,
+            taste_names: null
         }),
 
         methods: {
@@ -156,9 +157,10 @@
             },
             getTasteData()
             {
-                axios.get('http://localhost:8000/api/v1/product/' + this.product.name+ this.select_taste_name).then((response) => {
-                    this.select_taste = response.data
-                });
+                // axios.get('http://localhost:8000/api/v1/product/' + this.product.name+ this.select_taste_name).then((response) => {
+                //     this.select_taste = response.data
+                // });
+                this.select_taste=this.product.taste[0]
 
             }
         }

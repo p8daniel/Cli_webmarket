@@ -6,8 +6,12 @@ from webmarket.models.product import Product, ProductCategory, Category, Taste
 
 
 def get_product_by_name(name):
-    product = Product.get(name=name)
-    return product
+    product = Product.get_or_none(name=name)
+    if product is not None:
+        return product
+    else:
+        raise Exception ("The product do not exist")
+
 
 
 def loadfiledata(name="./webmarket/dati_review141019.csv"):

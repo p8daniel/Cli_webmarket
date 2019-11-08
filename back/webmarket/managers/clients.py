@@ -67,3 +67,7 @@ def add_dicount_to_backet(nom_panier,code):
 
 def add_discount_code(code, discount_amount):
     Discount.create(name=code, amount=discount_amount)
+
+
+def get_client_by_name():
+    pass
